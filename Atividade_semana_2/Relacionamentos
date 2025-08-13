@@ -1,0 +1,18 @@
+
+AgenteResponsavel – Afeta → ÁreaDesmatada
+
+Um agente pode estar ligado a uma ou mais áreas desmatadas.
+
+Uma área pode ter um ou mais agentes responsáveis identificados.
+
+Fiscalizacao – Verifica → ÁreaDesmatada
+
+Uma fiscalização é feita sobre uma ou mais áreas desmatadas.
+
+Uma área pode ser fiscalizada várias vezes.
+
+Fiscalizacao – EmitidaPor → AgenteResponsavel
+
+Um agente pode receber fiscalizações.
+
+Uma fiscalização pode ser direcionada a um ou mais agentes.
