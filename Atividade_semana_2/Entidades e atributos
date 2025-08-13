@@ -1,0 +1,31 @@
+
+ÁreaDesmatada
+
+PK: id_area
+
+localizacao (coordenadas ou município)
+
+tamanho_hectares (área em hectares)
+
+data_registro (data em que foi detectado o desmatamento)
+
+AgenteResponsavel
+
+PK: id_agente
+
+nome
+
+tipo (pessoa física, empresa, organização)
+
+CPF_CNPJ
+
+Fiscalizacao
+
+PK: id_fiscalizacao
+
+orgao_responsavel (IBAMA, Polícia Federal, etc.)
+
+data_fiscalizacao
+
+resultado (multado, embargado, sem irregularidade)
+
