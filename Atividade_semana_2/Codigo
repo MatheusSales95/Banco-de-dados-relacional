@@ -1,0 +1,69 @@
+Table AreaDesmatada {
+  id_area int [primary key, increment]
+  localizacao varchar(255) [not null]
+  tamanho_hectares decimal(10, 2) [not null]
+  data_registro date [not null]
+  
+  indexes {
+    localizacao [name: 'idx_area_localizacao']
+    data_registro [name: 'idx_area_data']
+  }
+}
+
+Table AgenteResponsavel {
+  id_agente int [primary key, increment]
+  nome varchar(255) [not null]
+  tipo enum('Pessoa Física', 'Empresa', 'Organização') [not null]
+  CPF_CNPJ varchar(20) [not null, unique]
+  
+  indexes {
+    CPF_CNPJ [name: 'idx_agente_cpf_cnpj']
+  }
+}
+
+Table Fiscalizacao {
+  id_fiscalizacao int [primary key, increment]
+  orgao_responsavel varchar(100) [not null]
+  data_fiscalizacao date [not null]
+  resultado enum('Multado', 'Embargado', 'Sem irregularidade') [not null]
+  
+  indexes {
+    data_fiscalizacao [name: 'idx_fiscalizacao_data']
+  }
+}
+
+Table Agente_Area {
+  id_agente int
+  id_area int
+  
+  primary key (id_agente, id_area)
+  
+  note: 'Tabela de junção entre AgenteResponsavel e AreaDesmatada'
+}
+
+Table Fiscalizacao_Area {
+  id_fiscalizacao int
+  id_area int
+  
+  primary key (id_fiscalizacao, id_area)
+  
+  note: 'Tabela de junção entre Fiscalizacao e AreaDesmatada'
+}
+
+Table Fiscalizacao_Agente {
+  id_fiscalizacao int
+  id_agente int
+  
+  primary key (id_fiscalizacao, id_agente)
+  
+  note: 'Tabela de junção entre Fiscalizacao e AgenteResponsavel'
+}
+
+Ref: Agente_Area.id_agente > AgenteResponsavel.id_agente
+Ref: Agente_Area.id_area > AreaDesmatada.id_area
+
+Ref: Fiscalizacao_Area.id_fiscalizacao > Fiscalizacao.id_fiscalizacao
+Ref: Fiscalizacao_Area.id_area > AreaDesmatada.id_area
+
+Ref: Fiscalizacao_Agente.id_fiscalizacao > Fiscalizacao.id_fiscalizacao
+Ref: Fiscalizacao_Agente.id_agente > AgenteResponsavel.id_agente
