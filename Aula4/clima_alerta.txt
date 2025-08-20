@@ -1,0 +1,54 @@
+CREATE TABLE TipoEvento (
+    idTipoEvento SERIAL PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    descricao TEXT
+);
+
+CREATE TABLE Localizacao (
+    idLocalizacao SERIAL PRIMARY KEY,
+    latitude REAL,
+    longitude DOUBLE PRECISION,
+    cidade VARCHAR(255),
+    estado VARCHAR(2)
+);
+
+CREATE TABLE Usuario (
+    idUsuario SERIAL PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    senhaHash VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE Evento (
+    idEvento SERIAL PRIMARY KEY,
+    titulo VARCHAR(255) NOT NULL,
+    descricao TEXT,
+    dataHora TIMESTAMP,
+    status VARCHAR(50),
+    idTipoEvento INTEGER REFERENCES TipoEvento(idTipoEvento),
+    idLocalizacao INTEGER REFERENCES Localizacao(idLocalizacao)
+);
+
+CREATE TABLE Relato (
+    idRelato SERIAL PRIMARY KEY,
+    texto TEXT,
+    dataHora TIMESTAMP,
+    idEvento INTEGER REFERENCES Evento(idEvento),
+    idUsuario INTEGER REFERENCES Usuario(idUsuario)
+);
+
+CREATE TABLE Alerta (
+    idAlerta SERIAL PRIMARY KEY,
+    mensagem TEXT,
+    dataHora TIMESTAMP,
+    nivel VARCHAR(50),
+    idEvento INTEGER REFERENCES Evento(idEvento)
+);
+
+CREATE TABLE HistoricoEvento (
+    idHistorico SERIAL PRIMARY KEY,
+    idEvento INTEGER REFERENCES Evento(idEvento),
+    dataHoraAlteracao TIMESTAMP,
+    statusAnterior VARCHAR(50),
+    statusNovo VARCHAR(50)
+);
