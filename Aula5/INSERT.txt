@@ -1,0 +1,48 @@
+INSERT INTO TipoEvento (nome, descricao) VALUES
+('Queimada', 'Incêndio de grandes proporções em áreas urbanas ou rurais.'),
+('Inundação', 'Excesso de água cobrindo áreas normalmente secas.'),
+('Deslizamento', 'Movimento de massa de terra ou rochas encosta abaixo.'),
+('Vendaval', 'Ventos fortes e destrutivos.'),
+('Seca', 'Período prolongado de tempo seco, causando escassez de água.');
+
+INSERT INTO Localizacao (latitude, longitude, cidade, estado) VALUES
+(-23.305, -45.965, 'Jacareí', 'SP'),
+(-23.550, -46.633, 'São Paulo', 'SP'),
+(-22.906, -43.172, 'Rio de Janeiro', 'RJ'),
+(-15.780, -47.929, 'Brasília', 'DF'),
+(-20.315, -40.312, 'Vitória', 'ES');
+
+INSERT INTO Usuario (nome, email, senhaHash) VALUES
+('Maria Oliveira', 'maria.oliveira@email.com', '2b6c7f64f76b09d0a7b9e...'),
+('João Silva', 'joao.silva@email.com', 'a1b2c3d4e5f6a7b8c9d0e...'),
+('Ana Souza', 'ana.souza@email.com', 'f1e2d3c4b5a6f7e8d9c0b...'),
+('Pedro Costa', 'pedro.costa@email.com', '1a2b3c4d5e6f7a8b9c0d1...'),
+('Carla Santos', 'carla.santos@email.com', 'x1y2z3w4v5u6t7s8r9q0p...');
+
+INSERT INTO Evento (titulo, descricao, dataHora, status, idTipoEvento, idLocalizacao) VALUES
+('Queimada em área de preservação', 'Fogo se alastrando na mata próxima à represa.', '2025-08-15 14:35:00', 'Ativo', 1, 1),
+('Inundação na Zona Leste', 'Ruas alagadas e casas afetadas.', '2025-08-16 08:00:00', 'Em Monitoramento', 2, 2),
+('Deslizamento em encosta', 'Terra e pedras bloqueando a rodovia.', '2025-08-17 10:30:00', 'Resolvido', 3, 3),
+('Vendaval em bairro central', 'Árvores caídas e destelhamentos.', '2025-08-18 20:00:00', 'Ativo', 4, 4),
+('Seca prolongada no interior', 'Nível dos rios muito baixo.', '2025-08-19 12:00:00', 'Em Monitoramento', 5, 5);
+
+INSERT INTO Relato (texto, dataHora, idEvento, idUsuario) VALUES
+('Fumaça intensa e chamas visíveis a partir da rodovia.', '2025-08-15 15:10:00', 1, 1),
+('Água subindo rapidamente, carros submersos.', '2025-08-16 09:00:00', 2, 2),
+('Estrada interditada devido à queda de barreiras.', '2025-08-17 11:00:00', 3, 3),
+('Postes caídos e falta de energia.', '2025-08-18 21:00:00', 4, 4),
+('Plantacoes secando e animais sem água.', '2025-08-19 13:00:00', 5, 5);
+
+INSERT INTO Alerta (mensagem, dataHora, nivel, idEvento) VALUES
+('Evacuação imediata da área próxima à represa.', '2025-08-15 15:20:00', 'Crítico', 1),
+('Alerta de inundação para áreas ribeirinhas.', '2025-08-16 09:30:00', 'Alto', 2),
+('Rodovia liberada após remoção de detritos.', '2025-08-17 14:00:00', 'Baixo', 3),
+('Recomenda-se cautela ao sair de casa devido aos ventos.', '2025-08-18 22:00:00', 'Médio', 4),
+('Racionamento de água em vigor.', '2025-08-19 14:00:00', 'Crítico', 5);
+
+INSERT INTO HistoricoEvento (idEvento, dataHoraAlteracao, statusAnterior, statusNovo) VALUES
+(1, '2025-08-15 14:35:00', NULL, 'Ativo'),
+(2, '2025-08-16 08:00:00', NULL, 'Em Monitoramento'),
+(3, '2025-08-17 10:30:00', NULL, 'Resolvido'),
+(1, '2025-08-15 16:00:00', 'Ativo', 'Em Monitoramento'),
+(2, '2025-08-16 10:00:00', 'Em Monitoramento', 'Resolvido');
