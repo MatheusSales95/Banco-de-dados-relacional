@@ -1,0 +1,28 @@
+SELECT
+    e.titulo,
+    e.descricao,
+    e.dataHora,
+    e.status,
+    te.nome AS tipo_evento,
+    l.cidade,
+    l.estado
+FROM
+    Evento e
+JOIN
+    TipoEvento te ON e.idTipoEvento = te.idTipoEvento
+JOIN
+    Localizacao l ON e.idLocalizacao = l.idLocalizacao;
+
+
+
+SELECT
+    u.nome AS nome_usuario,
+    u.email,
+    r.texto AS relato_texto,
+    r.dataHora AS relato_dataHora
+FROM
+    Usuario u
+JOIN
+    Relato r ON u.idUsuario = r.idUsuario;
+
+
